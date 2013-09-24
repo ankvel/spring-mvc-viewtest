@@ -3,9 +3,11 @@ package com.akestrel.edu.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
@@ -36,7 +38,14 @@ import com.akestrel.edu.web.interceptor.SomeHandlerInterceptor;
 // @ComponentScan("com.akestrel.edu.web.controller")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-	
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
+		ms.setBasenames("WEB-INF/i18n/messages", "WEB-INF/i18n/application");
+		ms.setDefaultEncoding("UTF-8");
+		ms.setFallbackToSystemLocale(false);		
+		return ms;		
+	}
 	
 	@Bean
 	public LocaleResolver localeResolver() {

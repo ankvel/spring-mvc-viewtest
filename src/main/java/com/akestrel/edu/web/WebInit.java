@@ -1,9 +1,14 @@
 package com.akestrel.edu.web;
 
+import java.util.Enumeration;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.springframework.web.SpringServletContainerInitializer;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.akestrel.edu.aspect.AspectConfig;
@@ -31,6 +36,22 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		super.onStartup(servletContext);
 	}	
+	
+	protected Filter[] getServletFilters() {
+		
+			
+		CharacterEncodingFilter filter = new CharacterEncodingFilter();
+		filter.setForceEncoding(true);
+		filter.setEncoding("UTF-8");
+		
+		
+		Filter[] filters = new Filter[] {new SomeFilter(), filter};		
+		
+		
+		
+		return filters;
+	}
+	
 	
 	/*@Override
 	protected Filter[] getServletFilters() {

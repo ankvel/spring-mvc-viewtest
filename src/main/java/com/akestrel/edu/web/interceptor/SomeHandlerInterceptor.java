@@ -12,9 +12,10 @@ public class SomeHandlerInterceptor implements HandlerInterceptor {
 
 	// static final Logger log = LoggerFactory.getLogger(SomeHandlerInterceptor.class);
 	
+	
 	@Override
-	public boolean preHandle(HttpServletRequest request,
-			HttpServletResponse response, Object handler) throws Exception {		
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+		    throws Exception {		
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("\nIn Interceptor: Request Parameters: [\n");

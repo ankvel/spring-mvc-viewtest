@@ -42,14 +42,9 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 			
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
 		filter.setForceEncoding(true);
-		filter.setEncoding("UTF-8");
+		filter.setEncoding("UTF-8");					
 		
-		
-		Filter[] filters = new Filter[] {new SomeFilter(), filter};		
-		
-		
-		
-		return filters;
+		return new Filter[] {filter};
 	}
 	
 	

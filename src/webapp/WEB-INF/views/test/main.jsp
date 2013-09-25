@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/taglibs.jsp"%>
 
 <spring:message code="label_id" var="labelId"/>
@@ -12,7 +13,7 @@
 
     <div class="row">
 	    <div class="col-md-8">
-			<form:form commandName="aksMessage" method="POST">
+			<form:form commandName="aksMessage" accept-charset="UTF-8" method="POST">
 			    <div class="row">
 				    <div class="col-md-2">${labelAuthor}</div>
 				    <div class="col-md-10"><form:input path="author" /><form:errors path="author" cssClass="alert-danger" /></div>				    

@@ -12,7 +12,10 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.ui.context.ThemeSource;
+import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -23,6 +26,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
+import org.springframework.web.servlet.theme.CookieThemeResolver;
+import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles2.TilesView;
@@ -38,6 +43,21 @@ import com.akestrel.edu.web.interceptor.SomeHandlerInterceptor;
 // @ComponentScan("com.akestrel.edu.web.controller")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+	@Bean
+	public ThemeResolver themeResolver() {
+		CookieThemeResolver themeResolver = new CookieThemeResolver();
+		themeResolver.setCookieName("theme");
+		themeResolver.setDefaultThemeName("standart");		
+		return themeResolver;
+	}
+	
+	@Bean
+	public ThemeSource themeSource() {
+		ResourceBundleThemeSource themeSource = new ResourceBundleThemeSource();
+		themeSource.setBasenamePrefix("com.akestrel.edu.web.themes.");
+		return themeSource;
+	}	
+	
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
@@ -82,9 +102,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		
 		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
 		localeChangeInterceptor.setParamName("lang");
-		
 		registry.addInterceptor(localeChangeInterceptor);
-		registry.addInterceptor(new SomeHandlerInterceptor());
+		
+		ThemeChangeInterceptor themeChangeInterceptor = new ThemeChangeInterceptor();
+		registry.addInterceptor(themeChangeInterceptor);
+		
+		
+		//registry.addInterceptor(new SomeHandlerInterceptor());
 	}
 
 	

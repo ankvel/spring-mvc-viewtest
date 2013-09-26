@@ -12,6 +12,6 @@
 	
 	<definition extends="default" name="test">
 		<put-attribute name="body" value="/WEB-INF/views/test/main.jsp" />
-		<put-attribute name="message" cascade="true" value="/WEB-INF/message.jsp" />
+		<put-attribute name="message" cascade="true" value="/WEB-INF/views/message.jsp" />
 	</definition>
 </tiles-definitions>

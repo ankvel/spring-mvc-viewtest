@@ -6,29 +6,46 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.Length;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @XmlRootElement()
 @XmlAccessorType(XmlAccessType.NONE)
 public class AksMessage {
 
 	@XmlElement
-	Long id;
+	private Long id;
 
 	@Length(min = 3, max = 40)
 	@XmlElement
-	String author;
+	private String author;
 
 	@Length(min = 3)
 	@XmlElement
-	String content;
+	private String content;
+	
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	private DateTime createdDate;
+	
 
 	public AksMessage() {
 	}
 
-	public AksMessage(Long id, String author, String content) {
+	public AksMessage(Long id, String author, String content, DateTime createdDate) {
 		this.id = id;
 		this.author = author;
 		this.content = content;
+		this.createdDate = createdDate;
+	}
+	
+	
+	public DateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(DateTime createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	public Long getId() {

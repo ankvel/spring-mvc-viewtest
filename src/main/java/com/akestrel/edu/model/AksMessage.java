@@ -4,14 +4,19 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.akestrel.edu.support.DateTimeAdapter;
+
+
 @XmlRootElement()
 @XmlAccessorType(XmlAccessType.NONE)
+
 public class AksMessage {
 
 	@XmlElement
@@ -26,6 +31,8 @@ public class AksMessage {
 	private String content;
 	
 	@DateTimeFormat(iso=ISO.DATE_TIME)
+	@XmlElement
+	@XmlJavaTypeAdapter(DateTimeAdapter.class)
 	private DateTime createdDate;
 	
 

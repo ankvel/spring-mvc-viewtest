@@ -54,7 +54,7 @@
 					<td>${aksMessage.author}</td>
 					<td>${aksMessage.content}</td>
 					<%-- <td>${aksMessage.createdDate}</td> --%>
-					<td><joda:format value="${aksMessage.createdDate}" pattern="yyyy-MM-dd"/></td>	
+					<td><joda:format value="${aksMessage.createdDate}" pattern="yyyy-MM-dd:hh:mm"/></td>	
 				</tr>
 			</c:forEach>
 		</tbody>

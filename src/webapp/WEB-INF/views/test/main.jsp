@@ -5,7 +5,9 @@
 <spring:message code="label_author" var="labelAuthor"/>
 <spring:message code="label_content" var="labelContent"/>
 <spring:message code="label_save" var="labelSave"/>
+<spring:message code="label_some_date" var="labelSomeDate"/>
 <spring:message code="label_created_date" var="labelCreatedDate"/>
+<spring:message code="date_format" var="dateFormat"/>
 
 
 <div class="page-header">
@@ -24,8 +26,8 @@
 			    <div class="col-md-10"><form:textarea path="content" /><form:errors path="content" cssClass="alert-danger" /></div>				    
 		    </div>
 		    <div class="row">
-			    <div class="col-md-2">${labelContent}</div>
-			    <div class="col-md-10"><form:input path="content" /><form:errors path="content" cssClass="alert-danger" /></div>				    
+			    <div class="col-md-2">${labelSomeDate}</div>
+			    <div class="col-md-10"><form:input path="someDate" /><span>${dateFormat}</span><form:errors path="someDate" cssClass="alert-danger" /></div>				    
 		    </div>
 	    	<div class="row">
 	    		<div class="col-md-12"><input type="submit" value="${labelSave}" /></div>
@@ -47,6 +49,7 @@
 				<th>${labelId}</th>
 				<th>${labelAuthor}</th>
 				<th>${labelContent}</th>
+				<th>${labelSomeDate}</th>
 				<th>${labelCreatedDate}</th>
 			</tr>
 		</thead>
@@ -56,9 +59,10 @@
 				<tr>
 					<td>${aksMessage.id}</td>
 					<td>${aksMessage.author}</td>
-					<td>${aksMessage.content}</td>
-					<%-- <td>${aksMessage.createdDate}</td> --%>
-					<td><joda:format value="${aksMessage.createdDate}" pattern="yyyy-MM-dd:hh:mm"/></td>	
+					<td>${aksMessage.content}</td>	
+					<td>${aksMessage.someDate}</td>				
+					<%-- <td><joda:format value="${aksMessage.someDate}" pattern="${dateFormat}"/></td> --%>	
+					<td><joda:format value="${aksMessage.createdDate}" pattern="[dd.MM.yyyy hh:mm]"/></td>
 				</tr>
 			</c:forEach>
 		</tbody>

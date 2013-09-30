@@ -30,6 +30,12 @@ public class AksMessage {
 	@XmlElement
 	private String content;
 	
+	//@DateTimeFormat(pattern="#{messages['date_format']}")
+	@DateTimeFormat(pattern="yyyy/MM/dd")
+	@XmlElement
+	@XmlJavaTypeAdapter(DateTimeAdapter.class)
+	private DateTime someDate;
+	
 	@DateTimeFormat(iso=ISO.DATE_TIME)
 	@XmlElement
 	@XmlJavaTypeAdapter(DateTimeAdapter.class)
@@ -39,10 +45,11 @@ public class AksMessage {
 	public AksMessage() {
 	}
 
-	public AksMessage(Long id, String author, String content, DateTime createdDate) {
+	public AksMessage(Long id, String author, String content, DateTime someDate, DateTime createdDate) {
 		this.id = id;
 		this.author = author;
 		this.content = content;
+		this.someDate = someDate;
 		this.createdDate = createdDate;
 	}
 	
@@ -77,6 +84,14 @@ public class AksMessage {
 
 	public void setContent(String content) {
 		this.content = content;
+	}	
+
+	public DateTime getSomeDate() {
+		return someDate;
+	}
+
+	public void setSomeDate(DateTime someDate) {
+		this.someDate = someDate;
 	}
 
 	@Override

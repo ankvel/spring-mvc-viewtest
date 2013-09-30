@@ -1,7 +1,5 @@
 package com.akestrel.edu.web.controller;
 
-import java.util.List;
-
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -5,6 +5,7 @@
 <spring:message code="label_author" var="labelAuthor"/>
 <spring:message code="label_content" var="labelContent"/>
 <spring:message code="label_save" var="labelSave"/>
+<spring:message code="label_created_date" var="labelCreatedDate"/>
 
 
 <div class="page-header">
@@ -46,6 +47,7 @@
 				<th>${labelId}</th>
 				<th>${labelAuthor}</th>
 				<th>${labelContent}</th>
+				<th>${labelCreatedDate}</th>
 			</tr>
 		</thead>
 		
@@ -55,10 +57,13 @@
 					<td>${aksMessage.id}</td>
 					<td>${aksMessage.author}</td>
 					<td>${aksMessage.content}</td>
+					<%-- <td>${aksMessage.createdDate}</td> --%>
+					<td><joda:format value="${aksMessage.createdDate}" pattern="yyyy-MM-dd:hh:mm"/></td>	
 				</tr>
 			</c:forEach>
 		</tbody>
-
+	</table>
+	
 </c:if>
 
 

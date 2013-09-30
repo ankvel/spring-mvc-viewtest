@@ -22,6 +22,10 @@
 			    <div class="col-md-2">${labelContent}</div>
 			    <div class="col-md-10"><form:textarea path="content" /><form:errors path="content" cssClass="alert-danger" /></div>				    
 		    </div>
+		    <div class="row">
+			    <div class="col-md-2">${labelContent}</div>
+			    <div class="col-md-10"><form:input path="content" /><form:errors path="content" cssClass="alert-danger" /></div>				    
+		    </div>
 	    	<div class="row">
 	    		<div class="col-md-12"><input type="submit" value="${labelSave}" /></div>
 	    	</div>

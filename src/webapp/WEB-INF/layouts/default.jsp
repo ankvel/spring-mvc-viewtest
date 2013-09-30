@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />		
 	
     <link href="${res}/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
-    <%-- <link href="${res}/css/app.css" rel="stylesheet" /> --%>
+    <link href="${res}/jquery-ui/1.10.3/css/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
     
     
 	<spring:theme code="styleSheet" var="app_css" />	
@@ -26,7 +26,8 @@
 		<tiles:insertAttribute name="body"/>		
 	</div>
 
-   	<script src="${res}/jquery/1.10.2/js/jquery.min.js"></script>
+   	<script src="${res}/jquery/1.10.2/js/jquery-1.10.2.min.js"></script>
+   	<script src="${res}/jquery-ui/1.10.3/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="${res}/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	
 </body>

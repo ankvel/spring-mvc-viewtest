@@ -2,19 +2,3 @@ body {
 	padding-top: 60px;
 	padding-bottom: 40px;
 }
-
-td {
-	padding: 10px;
-}
-
-th {
-	padding: 10px;
-}
-
-.row {
-	padding: 5px;
-}
-
-.form-label {
-	text-align: right;
-}

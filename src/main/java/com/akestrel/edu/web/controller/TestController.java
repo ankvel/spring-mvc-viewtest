@@ -7,15 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.ConversionServiceFactoryBean;
-import org.springframework.core.convert.support.DefaultConversionService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.akestrel.edu.model.AksMessage;
 import com.akestrel.edu.service.AksMessageService;
-import com.akestrel.edu.support.StringToDateTimeConverter;
 
 @Controller
 public class TestController {
@@ -80,6 +74,7 @@ public class TestController {
 		if (result.hasErrors()) {
 			model.addAttribute("msg", "Error: " + result.getAllErrors());
 			model.addAttribute("msg_type", "error");
+			model.addAttribute("aksMessages", ams.getAllMessages());
 			return "test";
 		} else {
 			aksMessage.setCreatedDate(new DateTime());

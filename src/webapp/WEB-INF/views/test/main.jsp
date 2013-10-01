@@ -8,43 +8,47 @@
 <spring:message code="label_some_date" var="labelSomeDate"/>
 <spring:message code="label_created_date" var="labelCreatedDate"/>
 <spring:message code="date_format" var="dateFormat"/>
+<spring:message code="datefield_hint" var="datefieldHint"/>
+<spring:message code="label_message_list" var="labelMessageList"/>
 
+	<div class="page-header">
+   		<h1>Aks Messages</h1>
+   	</div>
 
-<div class="page-header">
-   	<h1>Aks Messages</h1>
-   </div>
-
-   <div class="row">
-    <div class="col-md-8">
-		<form:form commandName="aksMessage" accept-charset="UTF-8" method="POST">
-		    <div class="row">
-			    <div class="col-md-2 form-label">${labelAuthor}</div>
-			    <div class="col-md-10"><form:input path="author" /><form:errors path="author" cssClass="alert-danger" /></div>				    
+	<form:form commandName="aksMessage" accept-charset="UTF-8" method="POST">
+			<div class="row">
+			    <div class="form-group col-sm-4">
+				    <label for="author">${labelAuthor}</label>
+				    <form:input path="author" class="input-mir form-control" /><form:errors path="author" cssClass="alert-danger" />				    
+			    </div>
 		    </div>
-		    <div class="row">
-			    <div class="col-md-2 form-label">${labelContent}</div>
-			    <div class="col-md-10"><form:textarea path="content" /><form:errors path="content" cssClass="alert-danger" /></div>				    
-		    </div>
-		    <div class="row">
-			    <div class="col-md-2 form-label">${labelSomeDate}</div>
-			    <div class="col-md-10"><form:input path="someDate" class="datepicker" /><span>dd/MM/yyyy</span><form:errors path="someDate" cssClass="alert-danger" /></div>				    
-		    </div>
-	    	<div class="row">
-	    		<div class="col-md-2 form-label">&nbsp;</div>
-	    		<div class="col-md-10"><input type="submit" value="${labelSave}" /></div>
+		    <div class="row">	    
+			    <div class="form-group col-sm-4">
+				    <label for="content">${labelContent}</label>
+				    <form:textarea path="content" class="form-control" /><form:errors path="content" cssClass="alert-danger" />				    
+			    </div>
+			</div>
+			<div class="row">	  
+			    <div class="form-group col-sm-4">
+				    <label for="someDate">${labelSomeDate} (${datefieldHint})</label>
+				    <form:input path="someDate" class="form-control datepicker" /><form:errors path="someDate" cssClass="alert-danger" />				    
+			    </div>
 	    	</div>
-		</form:form>
-	</div> 
-	<div class="col-md-4"></div>		
-</div>
+    	
+		<input type="submit" value="${labelSave}" class="btn btn-default" />
+		
+	</form:form>
+	
+	<div class="row">
+		<tiles:insertAttribute name="message"/>
+	</div>
 
-<tiles:insertAttribute name="message"/>
-
-<h1>Message List</h1>
 
 <c:if test="${not empty aksMessages}">
 
-	<table class="bordered-table zebra-striped">
+	<h1>${labelMessageList}</h1>
+	
+	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>${labelId}</th>

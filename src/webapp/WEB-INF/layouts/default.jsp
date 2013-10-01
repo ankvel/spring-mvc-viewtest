@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/taglibs.jsp"%>
 
+<spring:message code="datefield_regional" var="datefieldRegional"/>
+
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />		
 	
@@ -23,12 +26,16 @@
 
    	<script src="${res}/jquery/1.10.2/js/jquery-1.10.2.min.js"></script>
    	<script src="${res}/jquery-ui/1.10.3/js/jquery-ui-1.10.3.custom.min.js"></script>
+   	<script src="${res}/jquery-ui/1.10.3/js/jquery-ui-i18n.min.js"></script>
 	<script src="${res}/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
     		$(".datepicker" ).datepicker(    				
-   				{dateFormat: "dd/mm/yy"}
+    				$.datepicker.regional[ "${datefieldRegional}" ]
     		);
   		});
+		
+		
+		
 	</script>
 </body>

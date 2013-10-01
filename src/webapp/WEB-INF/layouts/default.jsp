@@ -9,14 +9,9 @@
     
     
 	<spring:theme code="styleSheet" var="app_css" />	
-	<link rel="stylesheet" type="text/css" media="screen" href="${res}/${app_css}" />    
-    
-	<style>			
-		body {
-			padding-top: 60px;
-			padding-bottom: 40px;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" media="screen" href="${res}/${app_css}" />
+	<link rel="stylesheet" type="text/css" media="screen" href="${res}/css/app.css" />    
+
 </head>
 
 <body>
@@ -29,5 +24,11 @@
    	<script src="${res}/jquery/1.10.2/js/jquery-1.10.2.min.js"></script>
    	<script src="${res}/jquery-ui/1.10.3/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="${res}/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	
+	<script type="text/javascript">
+		$(function() {
+    		$(".datepicker" ).datepicker(    				
+   				{dateFormat: "dd/mm/yy"}
+    		);
+  		});
+	</script>
 </body>

@@ -31,7 +31,7 @@ public class AksMessage {
 	private String content;
 	
 	//@DateTimeFormat(pattern="#{messages['date_format']}")
-	@DateTimeFormat(pattern="yyyy/MM/dd")
+	@DateTimeFormat(style="M-")
 	@XmlElement
 	@XmlJavaTypeAdapter(DateTimeAdapter.class)
 	private DateTime someDate;

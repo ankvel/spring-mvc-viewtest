@@ -17,6 +17,5 @@ public class ServiceConfigDefault implements ServiceConfig {
 		return new AksMessageServiceImpl(daoConfig.aksMessageDao());
 	}
 
-	
-	
+
 }

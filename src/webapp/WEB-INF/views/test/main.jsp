@@ -16,13 +16,13 @@
 
 	<form:form commandName="aksMessage" accept-charset="UTF-8" method="POST">
 			<div class="row">
-			    <div class="form-group col-sm-4">
+			    <div class="form-group col-sm-8">
 				    <label for="author">${labelAuthor}</label>
 				    <form:input path="author" class="input-mir form-control" /><form:errors path="author" cssClass="alert-danger" />				    
 			    </div>
 		    </div>
 		    <div class="row">	    
-			    <div class="form-group col-sm-4">
+			    <div class="form-group col-sm-8">
 				    <label for="content">${labelContent}</label>
 				    <form:textarea path="content" class="form-control" /><form:errors path="content" cssClass="alert-danger" />				    
 			    </div>

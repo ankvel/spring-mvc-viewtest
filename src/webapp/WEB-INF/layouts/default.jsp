@@ -15,27 +15,37 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="${res}/${app_css}" />
 	<link rel="stylesheet" type="text/css" media="screen" href="${res}/css/app.css" />    
 
-</head>
-
-<body>
-	<div class="navbar navbar-inverse navbar-fixed-top"></div>
-
-	<div class="container">			
-		<tiles:insertAttribute name="body"/>		
-	</div>
-
    	<script src="${res}/jquery/1.10.2/js/jquery-1.10.2.min.js"></script>
    	<script src="${res}/jquery-ui/1.10.3/js/jquery-ui-1.10.3.custom.min.js"></script>
    	<script src="${res}/jquery-ui/1.10.3/js/jquery-ui-i18n.min.js"></script>
 	<script src="${res}/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
-    		$(".datepicker" ).datepicker(    				
-    				$.datepicker.regional[ "${datefieldRegional}" ]
+    		$(".datepicker" ).datepicker(    	    				
+ 				$.datepicker.regional[ "${datefieldRegional}" ]    			
     		);
   		});
-		
-		
-		
 	</script>
+
+</head>
+
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		
+		<div class="container">	
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="${homeUrl}">Home</a></li>
+				<li><a href="?lang=en_AU">en_AU</a></li>
+				<li><a href="?lang=ru_RU">ru_RU</a></li>
+				<li><a href="?theme=standart">Standart</a></li>
+				<li><a href="?theme=green">Green</a></li>					
+			</ul>			
+		</div>
+	</div>
+
+
+	<div class="container">			
+		<tiles:insertAttribute name="body"/>		
+	</div>
+
 </body>

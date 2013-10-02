@@ -8,9 +8,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.akestrel.edu.support.DateConv;
 import com.akestrel.edu.support.DateTimeAdapter;
 
 
@@ -29,12 +31,11 @@ public class AksMessage {
 	@Length(min = 3)
 	@XmlElement
 	private String content;
-	
-	//@DateTimeFormat(pattern="#{messages['date_format']}")
-	@DateTimeFormat(style="M-")
+		
+	@DateConv
 	@XmlElement
 	@XmlJavaTypeAdapter(DateTimeAdapter.class)
-	private DateTime someDate;
+	private LocalDate someDate;
 	
 	@DateTimeFormat(iso=ISO.DATE_TIME)
 	@XmlElement
@@ -45,7 +46,7 @@ public class AksMessage {
 	public AksMessage() {
 	}
 
-	public AksMessage(Long id, String author, String content, DateTime someDate, DateTime createdDate) {
+	public AksMessage(Long id, String author, String content, LocalDate someDate, DateTime createdDate) {
 		this.id = id;
 		this.author = author;
 		this.content = content;
@@ -86,11 +87,11 @@ public class AksMessage {
 		this.content = content;
 	}	
 
-	public DateTime getSomeDate() {
+	public LocalDate getSomeDate() {
 		return someDate;
 	}
 
-	public void setSomeDate(DateTime someDate) {
+	public void setSomeDate(LocalDate someDate) {
 		this.someDate = someDate;
 	}
 

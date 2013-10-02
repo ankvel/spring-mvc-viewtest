@@ -3,11 +3,13 @@ package com.akestrel.edu.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDate;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
@@ -38,7 +40,8 @@ import org.springframework.web.servlet.view.tiles2.TilesView;
 
 import com.akestrel.edu.model.AksMessage;
 import com.akestrel.edu.model.AksMessages;
-import com.akestrel.edu.support.StringToDateTimeConverter;
+import com.akestrel.edu.support.LocalDateToStringConverter;
+import com.akestrel.edu.support.StringToLocalDateConverter;
 import com.akestrel.edu.web.controller.ControllerConfig;
 
 @EnableWebMvc
@@ -158,9 +161,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	}
 
-	/*@Override
+	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(new StringToDateTimeConverter("dd/MM/yyyy"));		
-	}*/
+		registry.addConverter(stringToLocalDateConverter());		
+		registry.addConverter(localDateToStringConverter());
+	}
+	
+	@Bean 
+	public Converter<String, LocalDate> stringToLocalDateConverter() {
+		return new StringToLocalDateConverter();
+	}
 
+	@Bean 
+	public Converter<LocalDate, String> localDateToStringConverter() {
+		return new LocalDateToStringConverter();
+	}
+	
 }

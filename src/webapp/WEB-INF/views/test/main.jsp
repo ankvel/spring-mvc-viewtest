@@ -7,7 +7,6 @@
 <spring:message code="label_save" var="labelSave"/>
 <spring:message code="label_some_date" var="labelSomeDate"/>
 <spring:message code="label_created_date" var="labelCreatedDate"/>
-<spring:message code="date_format" var="dateFormat"/>
 <spring:message code="datefield_hint" var="datefieldHint"/>
 <spring:message code="label_message_list" var="labelMessageList"/>
 
@@ -65,8 +64,9 @@
 					<td>${aksMessage.id}</td>
 					<td>${aksMessage.author}</td>
 					<td>${aksMessage.content}</td>						
-					<td><spring:eval expression="aksMessage.someDate" /></td>
-					<td>[<spring:eval expression="aksMessage.createdDate" />]</td>		
+					<td><spring:eval expression="aksMessage.someDate" /></td>					
+					<td>[<spring:eval expression="aksMessage.createdDate" />]</td>
+							
 					<%-- <td><joda:format value="${aksMessage.someDate}" pattern="${dateFormat}"/></td> --%>	
 					<%-- <td><joda:format value="${aksMessage.createdDate}" pattern="[dd.MM.yyyy hh:mm]"/></td> --%>
 				</tr>

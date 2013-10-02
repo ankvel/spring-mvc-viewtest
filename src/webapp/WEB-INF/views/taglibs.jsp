@@ -4,6 +4,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 
-
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<c:set var="res" value="${ctx}/resources" />
+<spring:url var="ctx" value="/" />
+<spring:url var="res" value="/resources" />
+<spring:url var="homeUrl" value="/" />

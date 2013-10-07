@@ -25,5 +25,10 @@ public class ControllerConfig {
 	public AksMessageController aksMessageController() {
 		return new AksMessageController(serviceConfig.aksMessageService());
 	}
+	
+	@Bean
+	public FileUpController fileUpController() {
+		return new FileUpController();
+	}	
 		
 }

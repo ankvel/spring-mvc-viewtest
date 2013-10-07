@@ -14,4 +14,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/test/main.jsp" />
 		<put-attribute name="message" cascade="true" value="/WEB-INF/views/message.jsp" />
 	</definition>
+	
+	<definition extends="default" name="fileup">
+		<put-attribute name="body" value="/WEB-INF/views/fileup/main.jsp" />		
+	</definition>	
+	
 </tiles-definitions>

@@ -6,4 +6,5 @@
 
 <spring:url var="ctx" value="/" />
 <spring:url var="res" value="/resources" />
+<spring:url var="resVen" value="/resources/vendors" />
 <spring:url var="homeUrl" value="/" />

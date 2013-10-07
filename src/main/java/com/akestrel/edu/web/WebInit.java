@@ -1,8 +1,12 @@
 package com.akestrel.edu.web;
 
+import java.io.File;
+
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -41,6 +45,13 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 		filter.setEncoding("UTF-8");					
 		
 		return new Filter[] {filter};
+	}
+	
+	@Override
+	protected void customizeRegistration(Dynamic registration) {
+		
+		MultipartConfigElement multipartConfigElement = new  MultipartConfigElement("/");				
+		registration.setMultipartConfig(multipartConfigElement);			
 	}
 	
 	

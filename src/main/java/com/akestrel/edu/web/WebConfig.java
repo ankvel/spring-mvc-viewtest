@@ -16,10 +16,13 @@ import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ui.context.ThemeSource;
 import org.springframework.ui.context.support.ResourceBundleThemeSource;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -151,14 +154,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		converters.add(new FormHttpMessageConverter());
 		converters.add(new ByteArrayHttpMessageConverter());
 		converters.add(new BufferedImageHttpMessageConverter());
-		// converters.add(new MappingJacksonHttpMessageConverter());
+		converters.add(new MappingJacksonHttpMessageConverter());
 
 		RequestMappingHandlerAdapter adapter = new RequestMappingHandlerAdapter();
 
 		adapter.setMessageConverters(converters);
 
 		return adapter;
-
 	}
 
 	@Override
@@ -176,5 +178,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public Converter<LocalDate, String> localDateToStringConverter() {
 		return new LocalDateToStringConverter();
 	}
+	
+	@Bean
+	public MultipartResolver multipartResolver() {
+		StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
+		return multipartResolver;		
+	}
+	
+	
 	
 }

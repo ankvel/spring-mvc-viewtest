@@ -42,6 +42,7 @@ public class AksMessage {
 	@XmlJavaTypeAdapter(DateTimeAdapter.class)
 	private DateTime createdDate;
 	
+	private byte[] picture;
 
 	public AksMessage() {
 	}
@@ -93,6 +94,14 @@ public class AksMessage {
 
 	public void setSomeDate(LocalDate someDate) {
 		this.someDate = someDate;
+	}
+	
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
 	}
 
 	@Override

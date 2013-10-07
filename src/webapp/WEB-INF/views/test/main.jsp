@@ -9,12 +9,13 @@
 <spring:message code="label_created_date" var="labelCreatedDate"/>
 <spring:message code="datefield_hint" var="datefieldHint"/>
 <spring:message code="label_message_list" var="labelMessageList"/>
+<spring:message code="label_picture" var="labelPicture"/>
 
 	<div class="page-header">
    		<h1>Aks Messages</h1>
    	</div>
 
-	<form:form commandName="aksMessage" accept-charset="UTF-8" method="POST">
+	<form:form commandName="aksMessage" enctype="multipart/form-data" accept-charset="UTF-8" method="POST">
 			<div class="row">
 			    <div class="form-group col-sm-8">
 				    <label for="author">${labelAuthor}</label>
@@ -27,6 +28,12 @@
 				    <form:textarea path="content" class="form-control" /><form:errors path="content" cssClass="alert-danger" />				    
 			    </div>
 			</div>
+		    <%-- <div class="row">	    
+			    <div class="form-group col-sm-8">
+				    <label for="content">${labelPicture}</label>
+				    <input type="file" name="picture" class="form-control" />				    
+			    </div>
+			</div> --%>			
 			<div class="row">	  
 			    <div class="form-group col-sm-4">
 				    <label for="someDate">${labelSomeDate} (${datefieldHint})</label>
@@ -55,6 +62,7 @@
 				<th>${labelContent}</th>
 				<th>${labelSomeDate}</th>
 				<th>${labelCreatedDate}</th>
+				<%-- <th>${labelPicture}</th> --%>
 			</tr>
 		</thead>
 		
@@ -66,6 +74,7 @@
 					<td>${aksMessage.content}</td>						
 					<td><spring:eval expression="aksMessage.someDate" /></td>					
 					<td>[<spring:eval expression="aksMessage.createdDate" />]</td>
+					<%-- <td><img src="${ctx}/test/picture/${aksMessage.id}"></td> --%>
 							
 					<%-- <td><joda:format value="${aksMessage.someDate}" pattern="${dateFormat}"/></td> --%>	
 					<%-- <td><joda:format value="${aksMessage.createdDate}" pattern="[dd.MM.yyyy hh:mm]"/></td> --%>

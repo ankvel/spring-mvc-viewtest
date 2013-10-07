@@ -1,11 +1,16 @@
 package com.akestrel.edu.web.controller;
 
-import java.util.Collections;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 
+import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +19,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -25,6 +32,8 @@ public class TestController {
 
 	private AksMessageService ams;
 		
+	private Logger log = LoggerFactory.getLogger(TestController.class);
+	
 	public TestController(AksMessageService ams) {
 		this.ams = ams;
 	}		
@@ -47,28 +56,22 @@ public class TestController {
 	 */
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test (AksMessage aksMessage, Model model) {		
-
-		
-		// TODO delete this
-		System.out.println("-----");
-		System.out.println("ServletContext.getAttributeNames()");
-		System.out.println("-----");
-		for (String s : Collections.list(servletContext.getAttributeNames())) {
-			System.out.println(s);
-		}
 		
 		model.addAttribute("aksMessages", ams.getAllMessages());
 		return "test";
 	}
 	
+	
 	/**
 	 * 
 	 */
 	@RequestMapping(value = {"/test", "/test/**"}, method = RequestMethod.POST)
-	public String test(HttpServletRequest request, @Validated AksMessage aksMessage, BindingResult result, Model model, RedirectAttributes attr) {		
+	public String test(HttpServletRequest request, 
+			@RequestParam(value="picture", required=false) Part picture,
+			@Validated AksMessage aksMessage, BindingResult result, Model model, RedirectAttributes attr) {		
 		
 		
-		System.out.println(aksMessage.getAuthor());		
+		log.info("Creating aks message");
 		
 		
 		if (result.hasErrors()) {
@@ -77,6 +80,26 @@ public class TestController {
 			model.addAttribute("aksMessages", ams.getAllMessages());
 			return "test";
 		} else {
+			
+			if (picture != null) {
+				log.info("File name: " + picture.getName());
+				log.info("File size: " + picture.getName());
+				byte[] content = null;
+				
+				try {
+					InputStream inputStream = picture.getInputStream();
+					if (inputStream != null) {
+						content = IOUtils.toByteArray(inputStream);						
+					} else {
+						log.info("File inputstream is null");
+					}
+				} catch (IOException ioe) {
+					log.error("Error saving uploaded file");
+				}
+				aksMessage.setPicture(content);
+			}
+			
+			
 			aksMessage.setCreatedDate(new DateTime());
 			ams.saveMessage(aksMessage);
 			attr.addFlashAttribute("msg", "Saved: " + aksMessage);
@@ -85,5 +108,19 @@ public class TestController {
 		
 		return "redirect:/test";
 	}
+	
+	
+	@RequestMapping(value = {"/test/picture/{id}"}, method = RequestMethod.GET)
+	@ResponseBody
+	public byte[] downloadPicture(@PathVariable("id") Long id) {
+		AksMessage aksMessage = ams.getMessage(id);
+		
+		if (aksMessage != null && aksMessage.getPicture() != null) {
+			log.info("Downloading picture for id: {} with size: {}", aksMessage.getId(), 
+					aksMessage.getPicture().length);
+		}
+		return aksMessage.getPicture();
+	}
+	
 
 }

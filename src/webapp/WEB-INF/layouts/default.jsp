@@ -22,10 +22,10 @@
 	<script src="${resVen}/tinymce/4.0.7/js/tinymce/tinymce.min.js"></script>
 	<script src="${resVen}/blueimp-file-upload/8.8.5/js/jquery.iframe-transport.js"></script>
 	<script src="${resVen}/blueimp-file-upload/8.8.5/js/jquery.fileupload.js"></script>
+	<script src="${resVen}/datatables/1.9.4/js/jquery.dataTables.min.js"></script>
 	
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="${res}/css/dropzone.css" />
-	<script src="${res}/js/myuploadfunction.js"></script>	
+	<link rel="stylesheet" type="text/css" media="screen" href="${res}/css/dropzone.css" />	
 	
 	<script type="text/javascript">
 		$(function() {

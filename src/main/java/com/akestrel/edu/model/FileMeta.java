@@ -6,11 +6,22 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties({ "bytes" })
 public class FileMeta {
 
+	private Long id;
 	private String fileName;
 	private String fileSize;
 	private String fileType;
 
 	private byte[] bytes;
+
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getFileName() {
 		return fileName;

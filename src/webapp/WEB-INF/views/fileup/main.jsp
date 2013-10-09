@@ -22,33 +22,63 @@
     <div id="progress">
         <div style="width: 0%;"></div>
     </div>
- 
-    <table id="uploaded-files" class="table table-bordered table-striped">
-        <tr>
-            <th>File Name</th>
-            <th>File Size</th>
-            <th>File Type</th>
-            <th>Download</th>
-        </tr>
-    </table>
     
-	<script type="text/javascript">
-		$(function () {
+	<table id="uploaded_files" class="table table-bordered table-striped">
+	    <thead>
+	        <tr>
+	        	<th>Id</th>
+				<th>File Name</th>
+				<th>File Size</th>
+				<th>File Type</th>
+				<th>&nbsp;</th>            
+	        </tr>
+	    </thead>
+	</table>    
+
+    
+    <script type="text/javascript">
+ 
+    	function initDataTable() {    		
+    		return $('#uploaded_files').dataTable( {
+    			
+    			bServerSide: true,
+    			bPaginate: true,
+    			bJQueryUI: true,      			 
+    			bLengthChange: true, 
+    			bFilter: false,
+    			bSort: false,
+    			bInfo: true, 
+    			bAutoWidth: true, 
+    			bProcessing: true,
+    			iDisplayLength: 10,  					       
+    			aoColumns: [
+					{mData: "id"},
+					{mData: "fileName"},
+					{mData: "fileSize"},
+					{mData: "fileType"},
+					{mData: function(source, type, val ) {
+							return "<a href='${ctx}/fileup/get/" + source.id + "'>Download</a>"; 		
+						
+						}					
+					}
+	            ],
+    				
+    			     
+				sAjaxSource: "${ctx}/fileup/doajax",
+		        
+		    } );
+    	}
+    	
+    	
+
+		$(document).ready(function() {
+			var dataTable = initDataTable();
+	
 		    $('#fileupload').fileupload({
 		        dataType: 'json',
 		 
-		        done: function (e, data) {
-		            $("tr:has(td)").remove();
-		            $.each(data.result, function (index, file) {
-		 
-		                $("#uploaded-files").append(
-		                        $('<tr/>')
-		                        .append($('<td/>').text(file.fileName))
-		                        .append($('<td/>').text(file.fileSize))
-		                        .append($('<td/>').text(file.fileType))
-		                        .append($('<td/>').html("<a href='${ctx}/fileup/get/"+index+"'>Click</a>"))
-		                        );//end $("#uploaded-files").append()
-		            }); 
+		        done: function (e, data) {		        	
+		        	dataTable.fnDraw();
 		        },
 		 
 		        progressall: function (e, data) {
@@ -61,5 +91,6 @@
 		 
 		        dropZone: $('#dropzone')
 		    });
+		    
 		});	
 	</script>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.akestrel.edu.dao.AksMessageDao;
 import com.akestrel.edu.model.AksMessage;
 
+
 @Service
 public class AksMessageServiceImpl implements AksMessageService {
 

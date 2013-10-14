@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.akestrel.edu.aksm.AksMessage;
-import com.akestrel.edu.aksm.AksMessageService;
+import com.akestrel.edu.model.AksMessage;
+import com.akestrel.edu.service.AksMessageService;
 
 @Controller
 public class TestController {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.akestrel.edu.model.AksMessage;
 
+
 public interface AksMessageService {
 
 	AksMessage getMessage(Long id);

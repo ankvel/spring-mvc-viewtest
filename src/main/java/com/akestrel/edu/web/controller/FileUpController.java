@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.akestrel.edu.aksm.AksMessage;
-import com.akestrel.edu.file.FileMeta;
+import com.akestrel.edu.model.AksMessage;
+import com.akestrel.edu.model.FileMeta;
 import com.akestrel.edu.support.DataTablesRequest;
 import com.akestrel.edu.support.DataTablesResponse;
 

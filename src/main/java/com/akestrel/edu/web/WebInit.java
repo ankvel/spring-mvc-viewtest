@@ -10,11 +10,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.akestrel.edu.config.AspectConfigCustom;
-import com.akestrel.edu.config.DaoConfigCustom;
-import com.akestrel.edu.config.SecurityConfigCustom;
-import com.akestrel.edu.config.ServiceConfigCustom;
-import com.akestrel.edu.config.WebConfigCustom;
+import com.akestrel.edu.aspect.CustomAspectConfig;
+import com.akestrel.edu.dao.CustomDaoConfig;
+import com.akestrel.edu.security.CustomSecurityConfig;
+import com.akestrel.edu.service.CustomServiceConfig;
 
 @Order(1)
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -22,15 +21,15 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] {
-				DaoConfigCustom.class, 
-				ServiceConfigCustom.class, 
-				AspectConfigCustom.class,
-				SecurityConfigCustom.class};
+				CustomDaoConfig.class, 
+				CustomServiceConfig.class, 
+				CustomAspectConfig.class,
+				CustomSecurityConfig.class};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {		
-		return new Class<?>[] {WebConfigCustom.class};
+		return new Class<?>[] {CustomWebConfig.class};
 	}
 
 	@Override

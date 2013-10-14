@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.akestrel.edu.model.AksMessage;
-import com.akestrel.edu.model.AksMessages;
-import com.akestrel.edu.service.AksMessageService;
+import com.akestrel.edu.aksm.AksMessage;
+import com.akestrel.edu.aksm.AksMessages;
+import com.akestrel.edu.aksm.AksMessageService;
 
 @Controller
 @RequestMapping(value = "/aks_message")

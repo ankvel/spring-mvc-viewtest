@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SystemArchitecture {
 	
-	@Pointcut("within(com.akestrel.edu.web..*)")
+	/*@Pointcut("within(com.akestrel.edu.web..*)")
 	public void inWebLayer() {}
 	
 	@Pointcut("within(com.akestrel.edu.service..*)")
@@ -21,6 +21,6 @@ public class SystemArchitecture {
 	public void businessService() {}
 	
 	@Pointcut("execution(* com.akestrel.edu.dao.*.*(..)) && !target(com.akestrel.edu.dao.DaoConfig)")
-	public void dataAccessOperation() {}
+	public void dataAccessOperation() {}*/
 	
 }

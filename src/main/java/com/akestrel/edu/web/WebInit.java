@@ -1,30 +1,36 @@
 package com.akestrel.edu.web;
 
-import java.io.File;
-
 import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.akestrel.edu.aspect.AspectConfig;
-import com.akestrel.edu.dao.DaoConfigDefault;
-import com.akestrel.edu.service.ServiceConfigDefault;
+import com.akestrel.edu.config.AspectConfigCustom;
+import com.akestrel.edu.config.DaoConfigCustom;
+import com.akestrel.edu.config.SecurityConfigCustom;
+import com.akestrel.edu.config.ServiceConfigCustom;
+import com.akestrel.edu.config.WebConfigCustom;
 
+@Order(1)
 public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] {DaoConfigDefault.class, ServiceConfigDefault.class, AspectConfig.class};
+		return new Class<?>[] {
+				DaoConfigCustom.class, 
+				ServiceConfigCustom.class, 
+				AspectConfigCustom.class,
+				SecurityConfigCustom.class};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {		
-		return new Class<?>[] {WebConfig.class};
+		return new Class<?>[] {WebConfigCustom.class};
 	}
 
 	@Override
@@ -40,17 +46,20 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 	protected Filter[] getServletFilters() {
 		
 			
-		CharacterEncodingFilter filter = new CharacterEncodingFilter();
-		filter.setForceEncoding(true);
-		filter.setEncoding("UTF-8");					
+		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+		characterEncodingFilter.setForceEncoding(true);
+		characterEncodingFilter.setEncoding("UTF-8");
 		
-		return new Filter[] {filter};
+		//DelegatingFilterProxy delegatingFilterProxy = new DelegatingFilterProxy();
+		
+		
+		return new Filter[] {characterEncodingFilter/*, delegatingFilterProxy*/};
 	}
 	
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		
-		MultipartConfigElement multipartConfigElement = new  MultipartConfigElement("/");				
+		MultipartConfigElement multipartConfigElement = new  MultipartConfigElement("/");		
 		registration.setMultipartConfig(multipartConfigElement);			
 	}
 	

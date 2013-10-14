@@ -1,13 +1,8 @@
 package com.akestrel.edu.web.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 
-import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +14,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.akestrel.edu.model.AksMessage;
-import com.akestrel.edu.service.AksMessageService;
+import com.akestrel.edu.aksm.AksMessage;
+import com.akestrel.edu.aksm.AksMessageService;
 
 @Controller
 public class TestController {
@@ -67,7 +61,7 @@ public class TestController {
 	 */
 	@RequestMapping(value = {"/test", "/test/**"}, method = RequestMethod.POST)
 	public String test(HttpServletRequest request, 
-			@RequestParam(value="picture", required=false) Part picture,
+			//@RequestParam(value="picture", required=false) Part picture,
 			@Validated AksMessage aksMessage, BindingResult result, Model model, RedirectAttributes attr) {		
 		
 		
@@ -81,7 +75,7 @@ public class TestController {
 			return "test";
 		} else {
 			
-			if (picture != null) {
+			/*if (picture != null) {
 				log.info("File name: " + picture.getName());
 				log.info("File size: " + picture.getName());
 				byte[] content = null;
@@ -97,7 +91,7 @@ public class TestController {
 					log.error("Error saving uploaded file");
 				}
 				aksMessage.setPicture(content);
-			}
+			}*/
 			
 			
 			aksMessage.setCreatedDate(new DateTime());

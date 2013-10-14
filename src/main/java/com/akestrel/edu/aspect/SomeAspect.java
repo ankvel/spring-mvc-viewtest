@@ -7,10 +7,10 @@ import org.aspectj.lang.annotation.Before;
 public class SomeAspect {
 	
 //	@Before("com.akestrel.edu.aspect.SystemArchitecture.dataAccessOperation()")
-	@Before("com.akestrel.edu.aspect.SystemArchitecture.businessService()")
+	/*@Before("com.akestrel.edu.aspect.SystemArchitecture.businessService()")
 	public void doAccessCheck() {		 
 		 								    
 		System.out.println("In @Before Advice");
-	}
+	}*/
 	
 }

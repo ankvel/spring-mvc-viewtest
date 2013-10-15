@@ -31,8 +31,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 			@Override
 			public String getAuthority() {				
-				return "USER";
+				return "ROLE_USER";
 			}
+			
+			
 		};
 		authorities.add(ga);
 		

@@ -23,6 +23,7 @@ import org.springframework.ui.context.ThemeSource;
 import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -32,6 +33,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
@@ -126,6 +128,8 @@ public class CustomWebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("home");
+		registry.addViewController("/home").setViewName("home");
+		registry.addViewController("/login").setViewName("login");
 	}
 
 	@Override
@@ -181,12 +185,16 @@ public class CustomWebConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean
 	public MultipartResolver multipartResolver() {
-		//StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
 		multipartResolver.setDefaultEncoding("UTF-8");
 		return multipartResolver;		
 	}
 	
-	
+	@Bean HandlerExceptionResolver exceptionResolver() {
+		
+		SimpleMappingExceptionResolver er = new SimpleMappingExceptionResolver();
+		er.setDefaultErrorView("error");
+		return er;
+	}
 	
 }

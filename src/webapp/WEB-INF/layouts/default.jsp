@@ -3,7 +3,6 @@
 
 <spring:message code="datefield_regional" var="datefieldRegional"/>
 
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />		
 	
@@ -54,13 +53,46 @@
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		
 		<div class="container">	
-			<ul class="nav navbar-nav navbar-left">
-				<li><a href="${homeUrl}">Home</a></li>
-				<li><a href="?lang=en_AU">en_AU</a></li>
-				<li><a href="?lang=ru_RU">ru_RU</a></li>
-				<li><a href="?theme=standart">Standart</a></li>
-				<li><a href="?theme=green">Green</a></li>					
-			</ul>			
+			<div class="navbar-header">
+				<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>	
+					
+				<a href="${homeUrl}" class="navbar-brand">Home</a>	
+			</div>
+		
+			<nav class="navbar-collapse bs-navbar-collapse collapse" role="navigation">
+				<ul class="nav navbar-nav">				
+					
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Lang<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="?lang=en_AU">en_AU</a></li>
+							<li><a href="?lang=ru_RU">ru_RU</a></li>
+						</ul>
+					</li>
+					
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Theme<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="?theme=standart">Standart</a></li>
+							<li><a href="?theme=green">Green</a></li>
+						</ul>
+					</li>			
+				</ul>
+				
+				<sec:authorize access="isAuthenticated()">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><sec:authentication property="principal.username" /></a></li>				
+				</ul>				
+				</sec:authorize>				
+					
+			</nav>			
+			
+
 		</div>
 	</div>
 

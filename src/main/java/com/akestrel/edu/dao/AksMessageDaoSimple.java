@@ -12,6 +12,7 @@ import com.akestrel.edu.model.AksMessage;
 
 public class AksMessageDaoSimple implements AksMessageDao {
 
+	
 	private Map<Long, AksMessage> messages = new HashMap<Long, AksMessage>();
 	{
 		messages.put(
@@ -27,10 +28,13 @@ public class AksMessageDaoSimple implements AksMessageDao {
 				new LocalDate(2013, 9, 27), new DateTime()));
 	}
 
+
+	@Override
 	public AksMessage getMessage(Long id) {
 		return messages.get(id);
 	}
 
+	@Override
 	public void saveMessage(AksMessage message) {
 		if (message.getId() == null) {
 			message.setId(genId());
@@ -39,6 +43,7 @@ public class AksMessageDaoSimple implements AksMessageDao {
 		messages.put(message.getId(), message);
 	}
 
+	@Override
 	public List<AksMessage> getAllMessages() {
 		System.out.println("------------");
 		return new ArrayList<AksMessage>(messages.values());
